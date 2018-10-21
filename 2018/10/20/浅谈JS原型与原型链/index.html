@@ -93,21 +93,49 @@
         
   <article class="post">
     <div class="post-title">
-      <h2 class="title">Fist Blog</h2>
+      <h2 class="title">浅谈JS原型与原型链</h2>
        
     </div>
      <div class="post-meta">
-      <span class="post-time">2018-10-19</span>
+      <span class="post-time">2018-10-20</span>
     </div>
     <div class="post-content">
-      <h2 id="create-a-new-article"><a href="#create-a-new-article" class="headerlink" title="create a new article"></a>create a new article</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Hello World</span><br></pre></td></tr></table></figure>
+      <p>JS的原型及原型链是在ES6之前，ES5语法因为构造函数的原型而引出来的一些列问题，不多说看以下下的代码</p>
+<pre><code class="bash"><span class="keyword">function</span> <span class="function"><span class="title">Foo</span></span>() {} // 定义一个构造函数  
+var obj = new Foo(); // 实例化一个对象  
+</code></pre>
+<p>在chrome的控制台，打印某个对象的时候都有一个<strong>proto</strong>属性, 如  </p>
+<pre><code class="bash">console.log(obj) // 结果如下图
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/proto.jpg" style="margin: 0 0; padding: 0"><br>相对的每一个构造函数都有一个prototype属性，如</p>
+<pre><code class="bash">console.log(Foo.prototype)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/prototype.png" style="margin: 0 0; padding: 0"><br>可能你们已经发现了</p>
+<pre><code class="bash">console.log(obj.__proto__===Foo.prototype) // <span class="literal">true</span>
+</code></pre>
+<p><strong>一个对象的【<code>__proto__</code>】属性指向与它对应的构造函数的【prototype】, 这就是原型</strong><br>那么原型链又是怎么回事呢？？<br>注意看上面的第二张图Foo.prototype有一个<code>__proto__</code>属性，为了方便看我把它粘贴到下面</p>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/function__proto__.png" style="margin: 0 0; padding: 0"><br>那就说明Foo的原型也是一个对象，所以也会有这个<code>__proto__</code>属性，那么如果我们打印一下<code>Foo.prototype.__proto__</code><br><img src="/2018/10/20/浅谈JS原型与原型链/1540118752.png" style="margin: 0 0; padding: 0"><br>我们发现<code>Foo.prototype.__proto__</code>的构造函数是Object(),因为上面提到过对象的<strong>proto</strong>是指向对应的构造函数的prototype，则</p>
+<pre><code class="bash">console.log(Object.prototype)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119018(1).png" style="margin: 0 0; padding: 0"><br>那么我们神奇的发现  </p>
+<pre><code class="bash">console.log(Foo.prototype.__proto__===Object.prototype) // <span class="literal">true</span>
+                              ||
+console.log(obj.__proto__.__proto__===Object.prototype) // <span class="literal">true</span>
+</code></pre>
+<p>有没有发现<code>console.log(obj.__proto__.__proto__===Object.prototype)</code>就很像一条链，一层层的指上去<br>那么同理<code>Object.prototype.__proto__</code> 又指向什么呢？  </p>
+<pre><code class="bash">console.log(Object.prototype.__proto__)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119639(1).jpg" style="margin: 0 0; padding: 0"><br>即到最后所有的对象都继承自null，最后我们得到的原型链即是</p>
+<pre><code class="bash">console.log(obj.__proto__.__proto__.__proto__===null) /// <span class="literal">true</span>
+</code></pre>
+
     </div>
   </article>
   <div class="post-nav">
     <div class="post-nav-next post-nav-item">
       
-        <a href="/2018/10/19/hello-world/" rel="next" title="Hello World">
-          <i class="fa fa-chevron-left"></i> Hello World
+        <a href="/2018/10/19/Fist-Blog/" rel="next" title="Fist Blog">
+          <i class="fa fa-chevron-left"></i> Fist Blog
         </a>
       
     </div>
@@ -116,10 +144,6 @@
 
     <div class="post-nav-prev post-nav-item">
     
-        <a href="/2018/10/20/浅谈JS原型与原型链/" rel="prev" title="浅谈JS原型与原型链">
-          浅谈JS原型与原型链 <i class="fa fa-chevron-right"></i>
-        </a>
-      
     </div>
   </div>
 

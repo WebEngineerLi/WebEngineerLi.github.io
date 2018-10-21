@@ -1,126 +1,253 @@
-<!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+    <link rel="icon" href="/images/favicon.ico">
   
   <title>li_my Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="li_my Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="li_my Blog">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="li_my Blog">
-  
-  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/lib/jquery.js"></script>
+  <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+  <script src="/js/common.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 </head>
-</html>
-<body style="
 
-
-  background-color: #eff0f6
-
-">
-  <div id="container">
-    <nav id="nav">
-  <header class="header">
-    <a href="/" class="title">li_my Blog</a>
-  </header>
-  <div class="ctnWrap">
-    <div class="icons">
-      
-        
-          
-            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
-          
-        
-          
-            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
-          
-        
-          
-            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
-          
-        
-          
-            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
-          
-        
-          
-            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
-          
-        
-      
-    </div>
-    <div class="menu">
-      
-        
-            <a href="/" class="nav-menu z-active">HOME</a>
-          
-        
-            <a href="/archives" class="nav-menu ">ARCHIVE</a>
-          
-        
-            <a href="/about" class="nav-menu ">ABOUT</a>
-          
-        
-      
-    </div>
+  <body>
+    <header class="header">
+  <div class="color-bar">
+    <ul>
+      <li class="bar1"></li>
+      <li class="bar2"></li>
+      <li class="bar3"></li>
+      <li class="bar4"></li>
+      <li class="bar5"></li>
+      <li class="bar6"></li>
+    </ul>
   </div>
-</nav>
-    <div id="main">
-  <div class="project-card">
+  <div class="header-wrapper">
+    <div class="blog-title">
+      
+        <img class="logo" src="/images/logo.png" alt="logo">
+      
+      <a href="/" class="title">li_my Blog</a>
+    </div>
+    <nav class="navbar navbar-menu">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" id="nav-btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+        <ul class="menu menu-pc">
+          
+            <li class="menu-item">
+              <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+            </li>
+          
+            <li class="menu-item">
+              <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+            </li>
+          
+        </ul>
+    </nav>
+  </div>
+</header>
+<div class="collapse nav-collapse" style="position:fixed;top:59px;" id="bs-example-navbar-collapse-1">
+  <ul class="menu menu-mobile" style="list-style:none">
+    
+      <li class="menu-item">
+        <a href="/" class="menu-item-link"><i class="fa fa-home"></i><span>首页</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/tags/" class="menu-item-link"><i class="fa fa-tags"></i><span>Tags</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="/archives/" class="menu-item-link"><i class="fa fa-file"></i><span>归档</span></a>
+      </li>
+    
+      <li class="menu-item">
+        <a href="https://github.com/littleee/" class="menu-item-link"><i class="fa fa-github"></i><span>github</span></a>
+      </li>
+    
+  </ul>
+</div>
+
+    <main class="main">
+      <div class="content">
+        
+
+<section class="banner">
+  <div class="headintro">
+    <p class="title">HELLO, IM CORA</p>
+    <p class="subtitle">三流代码 &amp; 一流Bug</p>
+  </div>
+</section>
+
+
+
+<section class="posts">
   
-  <div class="ctnWrap">
-    <a href="/2018/10/19/Fist-Blog/" class="title">Fist Blog</a>
-    <section class="desc">
+    <article class="post">
+      <div class="post-meta">
+        <span class="post-time">2018-10-20</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2018/10/20/浅谈JS原型与原型链/">
+            
+              浅谈JS原型与原型链
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <p>JS的原型及原型链是在ES6之前，ES5语法因为构造函数的原型而引出来的一些列问题，不多说看以下下的代码</p>
+<pre><code class="bash"><span class="keyword">function</span> <span class="function"><span class="title">Foo</span></span>() {} // 定义一个构造函数  
+var obj = new Foo(); // 实例化一个对象  
+</code></pre>
+<p>在chrome的控制台，打印某个对象的时候都有一个<strong>proto</strong>属性, 如  </p>
+<pre><code class="bash">console.log(obj) // 结果如下图
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/proto.jpg" style="margin: 0 0; padding: 0"><br>相对的每一个构造函数都有一个prototype属性，如</p>
+<pre><code class="bash">console.log(Foo.prototype)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/prototype.png" style="margin: 0 0; padding: 0"><br>可能你们已经发现了</p>
+<pre><code class="bash">console.log(obj.__proto__===Foo.prototype) // <span class="literal">true</span>
+</code></pre>
+<p><strong>一个对象的【<code>__proto__</code>】属性指向与它对应的构造函数的【prototype】, 这就是原型</strong><br>那么原型链又是怎么回事呢？？<br>注意看上面的第二张图Foo.prototype有一个<code>__proto__</code>属性，为了方便看我把它粘贴到下面</p>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/function__proto__.png" style="margin: 0 0; padding: 0"><br>那就说明Foo的原型也是一个对象，所以也会有这个<code>__proto__</code>属性，那么如果我们打印一下<code>Foo.prototype.__proto__</code><br><img src="/2018/10/20/浅谈JS原型与原型链/1540118752.png" style="margin: 0 0; padding: 0"><br>我们发现<code>Foo.prototype.__proto__</code>的构造函数是Object(),因为上面提到过对象的<strong>proto</strong>是指向对应的构造函数的prototype，则</p>
+<pre><code class="bash">console.log(Object.prototype)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119018(1).png" style="margin: 0 0; padding: 0"><br>那么我们神奇的发现  </p>
+<pre><code class="bash">console.log(Foo.prototype.__proto__===Object.prototype) // <span class="literal">true</span>
+                              ||
+console.log(obj.__proto__.__proto__===Object.prototype) // <span class="literal">true</span>
+</code></pre>
+<p>有没有发现<code>console.log(obj.__proto__.__proto__===Object.prototype)</code>就很像一条链，一层层的指上去<br>那么同理<code>Object.prototype.__proto__</code> 又指向什么呢？  </p>
+<pre><code class="bash">console.log(Object.prototype.__proto__)
+</code></pre>
+<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119639(1).jpg" style="margin: 0 0; padding: 0"><br>即到最后所有的对象都继承自null，最后我们得到的原型链即是</p>
+<pre><code class="bash">console.log(obj.__proto__.__proto__.__proto__===null) /// <span class="literal">true</span>
+</code></pre>
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
+        <span class="post-time">2018-10-19</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2018/10/19/Fist-Blog/">
+            
+              Fist Blog
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <h2 id="create-a-new-article"><a href="#create-a-new-article" class="headerlink" title="create a new article"></a>create a new article</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Hello World</span><br></pre></td></tr></table></figure>
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
+        <span class="post-time">2018-10-19</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2018/10/19/hello-world/">
+            
+              Hello World
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+        
+      </div>
+    </article>
   
 </section>
-    <p class="sub">Oct 19, 2018</p>
+
+
+
+      </div>
+        <div class="footer">
+  <div class="footer-wrapper">
+    <div class="copyright">
+      
+      <span>&copy;</span>
+      
+      <span>2017 - 2018</span>
+      
+      <span class="author"><i class="fa fa-user"></i>li_my</span>
+    </div>
+    
+      <span>Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </span>
+    
+    
+      <span>|</span> <span>Theme - <a href="https://github.com/littleee/corazon">Corazon</a></span>
+      
+        <span>v1.0.0</span>
+      
+    
   </div>
 </div>
 
-  <div class="project-card">
-  
-  <div class="ctnWrap">
-    <a href="/2018/10/19/hello-world/" class="title">Hello World</a>
-    <section class="desc">
-  
-</section>
-    <p class="sub">Oct 19, 2018</p>
-  </div>
-</div>
-
-
-</div>
-    <footer id="footer" class="f-cf">
-  d.guangying@foxmail.com
-  
-    
-      
-        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
-      
-    
-      
-        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
-      
-    
-      
-        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
-      
-    
-      
-        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
-      
-    
-      
-        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
-      
-    
-  
-  <span class="f-fr">All rights reserved @Clover Tuan</span>
-</footer>
-  </div>
-</body>
+    </main>
+  </body>
 </html>
