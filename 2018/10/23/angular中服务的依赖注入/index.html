@@ -93,49 +93,82 @@
         
   <article class="post">
     <div class="post-title">
-      <h2 class="title">浅谈JS原型与原型链</h2>
+      <h2 class="title">angular中服务的依赖注入</h2>
        
     </div>
      <div class="post-meta">
-      <span class="post-time">2018-10-20</span>
+      <span class="post-time">2018-10-23</span>
     </div>
     <div class="post-content">
-      <p>JS的原型及原型链是在ES6之前，ES5语法因为构造函数的原型而引出来的一些列问题，不多说看以下下的代码</p>
-<pre><code class="bash"><span class="keyword">function</span> <span class="function"><span class="title">Foo</span></span>() {} // 定义一个构造函数  
-var obj = new Foo(); // 实例化一个对象  
+      <p>对angular的使用是因为最近部门刚刚交接的一个项目用angularjs写的，对我这种从头到尾都使用React的人来说，突然换框架去使用angularjs是一种煎熬…… 其中的一些依赖注入什么的搞的我头大，现在来展示一下我这些天踩坑对angularjs中服务的一些理解吧<br><strong> 首先是模块，在angularjs中模块是一个非常重要的概念 </strong>  </p>
+<pre><code class="bash">var mainApp = angular.module(<span class="string">'mainApp'</span>, []) //定义模块时，第二个参数是必须有的即便是空数组
 </code></pre>
-<p>在chrome的控制台，打印某个对象的时候都有一个<strong>proto</strong>属性, 如  </p>
-<pre><code class="bash">console.log(obj) // 结果如下图
+<p>然后我们使用angular的factory指令创建一个service， 用来计算两个数相加  </p>
+<pre><code class="bash">mainApp.factory(<span class="string">'addFactory'</span>, <span class="function"><span class="title">function</span></span>() {
+  <span class="built_in">let</span> service = {
+    add: <span class="keyword">function</span>(a, b) {
+      <span class="built_in">return</span> a + b
+    }
+  }
+  <span class="built_in">return</span> service;
+})
 </code></pre>
-<p><img src="/2018/10/20/浅谈JS原型与原型链/proto.jpg" style="margin: 0 0; padding: 0"><br>相对的每一个构造函数都有一个prototype属性，如</p>
-<pre><code class="bash">console.log(Foo.prototype)
+<p>用angular中的service指令创建一个service，用来计算两个数相加</p>
+<pre><code class="bash">mainApp.service(<span class="string">'addService'</span>, <span class="keyword">function</span>(addFactory) {
+  this.add = <span class="keyword">function</span>(a, b) {
+    <span class="built_in">return</span> a + b;
+  }
+})
 </code></pre>
-<p><img src="/2018/10/20/浅谈JS原型与原型链/prototype.png" style="margin: 0 0; padding: 0"><br>可能你们已经发现了</p>
-<pre><code class="bash">console.log(obj.__proto__===Foo.prototype) // <span class="literal">true</span>
+<p>用angular中的provider指令创建一个service，用来计算两个数相加</p>
+<pre><code class="bash">mainApp.provider(<span class="string">'addProvider'</span>, <span class="function"><span class="title">function</span></span>() {
+  this.<span class="variable">$get</span> = <span class="function"><span class="title">function</span></span>() {
+    var provider = {
+      add: <span class="keyword">function</span>(a, b) {
+        <span class="built_in">return</span> a + b;
+      }
+    }
+    <span class="built_in">return</span> provider;
+  }
+})
 </code></pre>
-<p><strong>一个对象的【<code>__proto__</code>】属性指向与它对应的构造函数的【prototype】, 这就是原型</strong><br>那么原型链又是怎么回事呢？？<br>注意看上面的第二张图Foo.prototype有一个<code>__proto__</code>属性，为了方便看我把它粘贴到下面</p>
-<p><img src="/2018/10/20/浅谈JS原型与原型链/function__proto__.png" style="margin: 0 0; padding: 0"><br>那就说明Foo的原型也是一个对象，所以也会有这个<code>__proto__</code>属性，那么如果我们打印一下<code>Foo.prototype.__proto__</code><br><img src="/2018/10/20/浅谈JS原型与原型链/1540118752.png" style="margin: 0 0; padding: 0"><br>我们发现<code>Foo.prototype.__proto__</code>的构造函数是Object(),因为上面提到过对象的<strong>proto</strong>是指向对应的构造函数的prototype，则</p>
-<pre><code class="bash">console.log(Object.prototype)
+<p>使用angular的constant指令创建两个常量</p>
+<pre><code class="bash">mainApp.constant(<span class="string">'numA'</span>, 10);
+mainApp.constant(<span class="string">'numB'</span>, 20);
 </code></pre>
-<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119018(1).png" style="margin: 0 0; padding: 0"><br>那么我们神奇的发现  </p>
-<pre><code class="bash">console.log(Foo.prototype.__proto__===Object.prototype) // <span class="literal">true</span>
-                              ||
-console.log(obj.__proto__.__proto__===Object.prototype) // <span class="literal">true</span>
+<p>接下来我们定义一个controller，将我们定义的服务注入进来</p>
+<pre><code class="bash">mainApp.controller(<span class="string">'mainController'</span>, <span class="keyword">function</span>(<span class="variable">$scope</span>, addFactory, addService, addProvider, numA, numB) {
+  console.log(<span class="string">'addFactory:'</span>, addFactory);
+  console.log(<span class="string">'addService:'</span>, addService);
+  console.log(<span class="string">'addProvider:'</span>, addProvider);
+  console.log(<span class="string">'numA:'</span>, numA);
+  console.log(<span class="string">'numB:'</span>, numB);
+  <span class="variable">$scope</span>.result = addService(numA, numB);
+})
 </code></pre>
-<p>有没有发现<code>console.log(obj.__proto__.__proto__===Object.prototype)</code>就很像一条链，一层层的指上去<br>那么同理<code>Object.prototype.__proto__</code> 又指向什么呢？  </p>
-<pre><code class="bash">console.log(Object.prototype.__proto__)
+<p>然后写一个html，将controller引入进来</p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=<span class="string">"utf-8"</span>&gt;
+  &lt;title&gt;AngularJS 依赖注入&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;AngularJS 简单应用&lt;/h2&gt;
+  &lt;div ng-app=<span class="string">"mainApp"</span> ng-controller=<span class="string">"mainController"</span>&gt;
+    &lt;p&gt;结果: {{result}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
-<p><img src="/2018/10/20/浅谈JS原型与原型链/1540119639(1).jpg" style="margin: 0 0; padding: 0"><br>即到最后所有的对象都继承自null，最后我们得到的原型链即是</p>
-<pre><code class="bash">console.log(obj.__proto__.__proto__.__proto__===null) /// <span class="literal">true</span>
-</code></pre>
+<p><strong> controller中打印出来的值为，如下图 </strong><br><img src="/2018/10/23/angular中服务的依赖注入/img.jpg" style="margin: 0 0; padding: 0"><br><strong> 界面中result的值为 </strong><br><img src="/2018/10/23/angular中服务的依赖注入/1540304333(1).png" style="margin: 0 0; padding: 0">  </p>
 
     </div>
   </article>
   <div class="post-nav">
     <div class="post-nav-next post-nav-item">
       
-        <a href="/2018/10/19/hello-world/" rel="next" title="Hello World">
-          <i class="fa fa-chevron-left"></i> Hello World
+        <a href="/2018/10/20/浅谈JS原型与原型链/" rel="next" title="浅谈JS原型与原型链">
+          <i class="fa fa-chevron-left"></i> 浅谈JS原型与原型链
         </a>
       
     </div>
@@ -144,10 +177,6 @@ console.log(obj.__proto__.__proto__===Object.prototype) // <span class="literal"
 
     <div class="post-nav-prev post-nav-item">
     
-        <a href="/2018/10/23/angular中服务的依赖注入/" rel="prev" title="angular中服务的依赖注入">
-          angular中服务的依赖注入 <i class="fa fa-chevron-right"></i>
-        </a>
-      
     </div>
   </div>
 

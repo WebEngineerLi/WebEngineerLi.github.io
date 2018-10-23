@@ -105,6 +105,94 @@
   
     <article class="post">
       <div class="post-meta">
+        <span class="post-time">2018-10-23</span>
+      </div>
+      <div class="post-title">
+        
+          <a class="post-title-link" href="/2018/10/23/angular中服务的依赖注入/">
+            
+              angular中服务的依赖注入
+            
+          </a>
+          
+        
+        <div class="post-tags">
+          
+        </div>
+      </div>
+      <div class="post-content">
+
+        
+
+        
+        <p>对angular的使用是因为最近部门刚刚交接的一个项目用angularjs写的，对我这种从头到尾都使用React的人来说，突然换框架去使用angularjs是一种煎熬…… 其中的一些依赖注入什么的搞的我头大，现在来展示一下我这些天踩坑对angularjs中服务的一些理解吧<br><strong> 首先是模块，在angularjs中模块是一个非常重要的概念 </strong>  </p>
+<pre><code class="bash">var mainApp = angular.module(<span class="string">'mainApp'</span>, []) //定义模块时，第二个参数是必须有的即便是空数组
+</code></pre>
+<p>然后我们使用angular的factory指令创建一个service， 用来计算两个数相加  </p>
+<pre><code class="bash">mainApp.factory(<span class="string">'addFactory'</span>, <span class="function"><span class="title">function</span></span>() {
+  <span class="built_in">let</span> service = {
+    add: <span class="keyword">function</span>(a, b) {
+      <span class="built_in">return</span> a + b
+    }
+  }
+  <span class="built_in">return</span> service;
+})
+</code></pre>
+<p>用angular中的service指令创建一个service，用来计算两个数相加</p>
+<pre><code class="bash">mainApp.service(<span class="string">'addService'</span>, <span class="keyword">function</span>(addFactory) {
+  this.add = <span class="keyword">function</span>(a, b) {
+    <span class="built_in">return</span> a + b;
+  }
+})
+</code></pre>
+<p>用angular中的provider指令创建一个service，用来计算两个数相加</p>
+<pre><code class="bash">mainApp.provider(<span class="string">'addProvider'</span>, <span class="function"><span class="title">function</span></span>() {
+  this.<span class="variable">$get</span> = <span class="function"><span class="title">function</span></span>() {
+    var provider = {
+      add: <span class="keyword">function</span>(a, b) {
+        <span class="built_in">return</span> a + b;
+      }
+    }
+    <span class="built_in">return</span> provider;
+  }
+})
+</code></pre>
+<p>使用angular的constant指令创建两个常量</p>
+<pre><code class="bash">mainApp.constant(<span class="string">'numA'</span>, 10);
+mainApp.constant(<span class="string">'numB'</span>, 20);
+</code></pre>
+<p>接下来我们定义一个controller，将我们定义的服务注入进来</p>
+<pre><code class="bash">mainApp.controller(<span class="string">'mainController'</span>, <span class="keyword">function</span>(<span class="variable">$scope</span>, addFactory, addService, addProvider, numA, numB) {
+  console.log(<span class="string">'addFactory:'</span>, addFactory);
+  console.log(<span class="string">'addService:'</span>, addService);
+  console.log(<span class="string">'addProvider:'</span>, addProvider);
+  console.log(<span class="string">'numA:'</span>, numA);
+  console.log(<span class="string">'numB:'</span>, numB);
+  <span class="variable">$scope</span>.result = addService(numA, numB);
+})
+</code></pre>
+<p>然后写一个html，将controller引入进来</p>
+<pre><code class="bash">&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=<span class="string">"utf-8"</span>&gt;
+  &lt;title&gt;AngularJS 依赖注入&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;AngularJS 简单应用&lt;/h2&gt;
+  &lt;div ng-app=<span class="string">"mainApp"</span> ng-controller=<span class="string">"mainController"</span>&gt;
+    &lt;p&gt;结果: {{result}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong> controller中打印出来的值为，如下图 </strong><br><img src="/2018/10/23/angular中服务的依赖注入/img.jpg" style="margin: 0 0; padding: 0"><br><strong> 界面中result的值为 </strong><br><img src="/2018/10/23/angular中服务的依赖注入/1540304333(1).png" style="margin: 0 0; padding: 0">  </p>
+
+        
+      </div>
+    </article>
+  
+    <article class="post">
+      <div class="post-meta">
         <span class="post-time">2018-10-20</span>
       </div>
       <div class="post-title">

@@ -233,7 +233,7 @@ body {
 .header .header-wrapper .blog-title .logo {
   width: 26px;
   height: 26px;
-  margin-right: 15px;
+  margin-right: 15px !important;
 }
 .header .header-wrapper .blog-title .title {
   color: #fff;
@@ -536,7 +536,7 @@ article h3 {
 }
 article p {
   font-size: 14px;
-  margin: 0 0 25px;
+  margin: 0!important;
   line-height: 2;
 }
 article table {

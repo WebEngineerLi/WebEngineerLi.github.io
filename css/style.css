@@ -648,6 +648,7 @@ article code {
 article p {
   margin: 2rem 0;
   line-height: 1.8;
+  margin-bottom: 0!important
 }
 article .video-container {
   position: relative;
