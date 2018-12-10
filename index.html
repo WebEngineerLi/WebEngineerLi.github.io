@@ -135,8 +135,20 @@
 <span class="keyword">const</span> newArr = arr.splice(<span class="number">1</span>, <span class="number">1</span>, <span class="string">"*"</span>);
 <span class="built_in">console</span>.log(arr); <span class="comment">//[1, "*", 3, 4, 5, 6] //删除了下标为1的数组元素2，替换为*</span>
 <span class="built_in">console</span>.log(newArr); <span class="comment">//[2] 返回被删除的元素</span>
+<span class="comment">// splice不仅可以删除元素还可以在数组的任意位置添加元素</span>
+<span class="keyword">const</span> newArrAdd = arr.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="number">9</span>); <span class="comment">//在下标为1的地方添加一个数组元素9，其他数组元素向后依次移动位置</span>
+<span class="comment">// 数组最后的结果为[1, 9, 2, 3, 4, 5, 6]</span>
+<span class="comment">// 利用splice也可实现数组元素交换位置，如元素2和5交换位置下标分别是(1和4)</span>
+arr[<span class="number">4</span>] = arr.splice(<span class="number">1</span>, <span class="number">1</span>, arr[<span class="number">4</span>])[<span class="number">0</span>];
 </code></pre>
-<p>由以上代码可见splice会改变原数组并且返回被删除的元素</p>
+<p>由以上代码可见splice会改变原数组并且返回被删除的元素<br><strong>slice：JS数组函数</strong><br>用法：从一个<code>数组</code>中截取指定的元素,<code>不会</code>改变原数组，返回<code>被截取的数组元素组成的新数组</code>,需要传参如下</p>
+<pre><code class="javascript">slice(start, end)
+<span class="comment">// 解释一下以上的参数作用</span>
+<span class="comment">// 1. start开始的下标，可以为复数, -1则为数组中的最后一个元素 -2 则为倒数第二个元素</span>
+<span class="comment">// 2. end(可选) 结束的下标 不选时默认为数组的长度-1</span>
+<span class="comment">// 3. 截取的数组元素包括下标start不包括下标end</span>
+<span class="comment">// 3. 返回值为截取的数组元素组成的新数组 不会改变原有的数组</span>
+</code></pre>
 
         
       </div>
