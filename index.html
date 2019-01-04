@@ -118,6 +118,8 @@
         
         <div class="post-tags">
           
+            <p>JS函数防抖与节流</p>
+          
         </div>
       </div>
       <div class="post-content">
@@ -125,7 +127,13 @@
         
 
         
-        
+        <p>先介绍概念，函数<code>防抖</code>与<code>节流</code></p>
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><h6 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h6><p>某个函数在n秒后执行，假如在n秒之内又有事件被触发了，则重新开始计时。<br>例如：<code>人进入电梯之后，电梯门从人进入到关上门再到开始上下运行中间花费的时间为10秒，假如在这10秒之内又有其他的人进入电梯了，那之前的时间计算就会被终止并重新开始计算。也就是在某段时间之内一个事件被触发多次，只有最后一次会被执行</code><br>适用场景：表单提交时假如用户疯狂的快速多次点击提交按钮时，使用函数防抖只会让最后一次的点击事件被触发，即：表单提交事件只执行一次。</p>
+<h5 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">	let timer = null;</span><br><span class="line">	return function() &#123;</span><br><span class="line">		if (timer) &#123;</span><br><span class="line">			clearTimeout(timer);</span><br><span class="line">		&#125;</span><br><span class="line">		const args = arguments;</span><br><span class="line">		timer = setTimeout(() =&gt; &#123;</span><br><span class="line">			fn.apply(this, args);</span><br><span class="line">		&#125;, wait)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从以上代码来看，debounce函数返回了一个匿名函数<code>（注意不能写成箭头函数），不能改变fn函数的上下文执行环境</code>，且使用了一个闭包将timer这个变量封存了起来。所以每次能进行清除及赋值操作。</p>
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><h5 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h5><p>函数节流就是相同时间间隔内某个事件只能执行依次。<br>例如：浏览器滚动条的滚动事件<code>window.onscroll</code> 这个函数。一旦滚动条发生了滚动之后，每隔几十毫秒就会触发一次。触发的频率越高要处理的操作就要重复执行多次，就会造成卡顿等现象。<br>解决办法：通过函数节流让浏览器滚动条的事件在触发之后，隔稍长的一段时间再去执行回调函数，降低事件的执行频率。</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, wait) &#123;</span><br><span class="line">	let prev = new Date();</span><br><span class="line">	return function() &#123; </span><br><span class="line">	    const args = arguments;</span><br><span class="line">		const now = new Date();</span><br><span class="line">		if (now - prev &gt; wait) &#123;</span><br><span class="line">			fn.apply(this, args);</span><br><span class="line">			prev = new Date();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         
       </div>
     </article>
